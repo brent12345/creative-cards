@@ -4,9 +4,30 @@
     <div class="col-sm-12">
       <nav-header @pageWasChanged="currentPage = $event"></nav-header>
       <!--{{ currentPage }}-->
+      <div id="instructions" class="text-center italic">
+        <div class="row">
+          <div class="col-sm-6">
+            <p>
+              <em>&larr; Make changes in the edit card below:</em>
+            </p>
+            </div>
+          <div class="col-sm-6">
+            <p>
+              <em>And they will show on the card! &rarr;</em>
+            </p>
+          </div>
+        </div>
+        </div>
+      <transition
+      appear
+      appear-active-class="custom-appear-active-class"
+      name="fade"
+      mode="out-in"
+      @enter="enter">
        <keep-alive>
       <component v-bind:is="currentPage"></component>
       </keep-alive>
+      </transition>
        <cc-footer>
         <p class="text-center" slot="app-name">&copy; {{ appName }}</p>
         <nav>
@@ -38,6 +59,12 @@ export default {
         appName: 'Creative Cards'
     }
   },
+  methods: {
+    enter(el, done) {
+      //console.log(el)
+      document.getElementById('instructions').style.display = "none";
+    }
+  },
   components: {
     navHeader: Header,
     cardFront: CardFront,
@@ -62,4 +89,41 @@ export default {
  a{
    cursor: pointer;
  }
+
+ .fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  transition: opacity .5s;
+
+}
+
+.custom-appear-active-class {
+  transition: opacity 1s;
+}
+
+.fade-leave-active {
+  transition: opacity .5s;
+
+}
+
+.custom-enter-active {
+  animation: scale-in 0.5s;
+}
+
+.custom-leave-active {
+  animation: scale-out 0.5s;
+}
+
+@keyframes scale-in {
+  0% {transform: scale(0); }
+  100% {transform: scale(1); }
+}
+
+@keyframes  scale-out {
+    0% {transform: scale(1); }
+  100% {transform: scale(0); }
+}
+
 </style>

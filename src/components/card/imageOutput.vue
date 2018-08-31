@@ -3,8 +3,12 @@
       :style="styleObject"
       @mouseover="showOptions = true"
       @mouseleave="showOptions = false">
+  <transition
+  enter-active-class="custom-enter-active"
+  leave-active-class="custom-leave-active">
   <button type="button" class="btn btn-danger btn-sm"
             v-show="showOptions" @click="clearImageProp">Remove Image</button>
+  </transition>
   <img id="outputImage">{{displayImage}}
 </div>
 </template>

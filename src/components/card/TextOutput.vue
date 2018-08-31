@@ -1,6 +1,7 @@
 <template>
   <div @mouseover="showOptions = true"
       @mouseleave = "showOptions = true">
+      <transition name="fade">
     <form class="small" v-show="showOptions">
      <label for="selectBox" class="">Font size: </label>
      <select id="selectBox" width="10px" class="custom-select" v-model="setFontSize">
@@ -35,6 +36,7 @@
             </label>
         </div>
     </form>
+    </transition>
     <p :style="styleObject"
     :class="{ bold: setBold, italic: setItalic }">
     {{ displayText }}
@@ -108,4 +110,10 @@ select {
 .custom-select {
   width: 6% !important;
 }
+
+
+
+
+
+
 </style>
