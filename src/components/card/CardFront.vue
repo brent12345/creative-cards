@@ -5,7 +5,7 @@
       <cc-image-upload @displayImageChanged="imageName = $event"></cc-image-upload><hr>
       <cc-text-input @displayTextChanged="textBoxValue2 = $event"/>
       <cc-text-input @displayTextChanged="textBoxValue3 = $event"/>
-
+      <cc-section-completed></cc-section-completed>
     </div>
     <div class="col-sm-6 card edit-display">
       <cc-text-output :displayText="textBoxValue1" :containerHeight="130"/>
@@ -21,7 +21,10 @@ import TextInput from './TextInput.vue'
 import TextOutput from './TextOutput.vue'
 import ImageUpload from './ImageUpload.vue'
 import ImageOutput from './ImageOutput.vue'
+import SectionCompleted from './SectionCompleted.vue'
+import { clearImageMixin } from '../../clearImageMixin'
 export default {
+  mixins: [clearImageMixin],
   data() {
     return {
       textBoxValue1: null,
@@ -30,18 +33,12 @@ export default {
       imageName: null
     }
   },
-  methods: {
-    clearImage () {
-      if(this.imageName != '') {
-      this.imageName = 'raccons.jpg'
-      }
-    }
-  },
   components: {
     ccTextInput: TextInput,
     ccTextOutput: TextOutput,
     ccImageUpload: ImageUpload,
-    ccImageOutput: ImageOutput
+    ccImageOutput: ImageOutput,
+    ccSectionCompleted: SectionCompleted
   }
 }
 </script>
